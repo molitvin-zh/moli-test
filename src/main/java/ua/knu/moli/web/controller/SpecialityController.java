@@ -26,7 +26,7 @@ public class SpecialityController {
 
     @GetMapping("/{id}")
     public ResponseEntity<SpecialityEntity> getById(@PathVariable("id") String id) {
-        return ResponseEntity.of(repository.findById(id));
+        return ResponseEntity.of(repository.findByShortName(id));
     }
 
     @GetMapping("/all")
@@ -41,7 +41,7 @@ public class SpecialityController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String id) {
-            repository.deleteById(id);
+            repository.deleteByShortName(id);
             return ResponseEntity.ok().build();
     }
 }

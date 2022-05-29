@@ -1,7 +1,9 @@
 package ua.knu.moli.web.controller;
 
-import ua.knu.moli.persistence.entity.FacultyEntity;
-import ua.knu.moli.persistence.repository.FacultyRepository;
+import ua.knu.moli.persistence.entity.QuestionEntity;
+import ua.knu.moli.persistence.entity.StudentEntity;
+import ua.knu.moli.persistence.repository.QuestionRepository;
+import ua.knu.moli.persistence.repository.StudentRepository;
 
 import java.util.List;
 
@@ -19,30 +21,35 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("a/rest/faculty")
+@RequestMapping("a/rest/question")
 @RequiredArgsConstructor
-public class FacultyController {
-    private final FacultyRepository repository;
+public class QuestionController {
+    private final QuestionRepository repository;
 
     @GetMapping("/{id}")
-    public ResponseEntity<FacultyEntity> getById(@PathVariable("id") String id) {
-        return ResponseEntity.of(repository.findByShortName(id));
+    public ResponseEntity<QuestionEntity> getById(@PathVariable("id") String id) {
+        return ResponseEntity.of(repository.findById(id));
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<FacultyEntity>> getAll() {
+    public ResponseEntity<List<QuestionEntity>> getAll() {
         return ResponseEntity.ok(repository.findAll());
     }
 
     @PostMapping
-    public ResponseEntity<FacultyEntity> save(@RequestBody @Valid FacultyEntity requestDto) {
+    public ResponseEntity<QuestionEntity> save(@RequestBody @Valid QuestionEntity requestDto) {
         return ResponseEntity.ok(repository.save(requestDto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String id) {
-            repository.deleteByShortName(id);
+            repository.deleteById(id);
             return ResponseEntity.ok().build();
-
     }
+
+    @GetMapping("test/{id}")
+    public ResponseEntity<List<QuestionEntity>> GetlistofQuestionsbytestid(@PathVariable("id") String id) {
+        return ResponseEntity.ok(repository.findAllByTestId(id));
+    }
+
 }

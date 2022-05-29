@@ -28,6 +28,15 @@ public class GlobalExceptionHandler {
                 .build(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ApplicationExceptionResponseDto> handleException(RuntimeException exception) {
+
+        return new ResponseEntity<>(ApplicationExceptionResponseDto.builder()
+                .message(exception.getMessage())
+                .status(422)
+                .build(), HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
     /**
      * Error handling for invalid incoming params.
      * Example:

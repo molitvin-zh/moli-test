@@ -21,19 +21,16 @@ import lombok.NoArgsConstructor;
 public class StudentEntity {
     @Id
     @NotNull
-    private Integer ticketNumber;
-
-    @NotNull
-    private String name;
-
-    @NotNull
-    private String surname;
-
-    @NotNull
-    private Integer phone;
-
-    @NotNull
     private String mail;
+
+    @NotNull
+    private String password;
+
+    @NotNull
+    private String groupa;
+
+    @NotNull
+    private String fullName;
 
     @ManyToOne
     @JoinColumn(name="faculty_id")

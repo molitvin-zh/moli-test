@@ -40,6 +40,9 @@ public class SubjectEntity {
     @NotNull
     private String name;
 
+    @NotNull
+    private String groups;
+
     @ManyToOne
     @JoinColumn(name = "faculty_id")
     private FacultyEntity faculty;
@@ -48,13 +51,14 @@ public class SubjectEntity {
     @JoinColumn(name = "speciality_id")
     private SpecialityEntity speciality;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "subject_teacher",
-            joinColumns = {@JoinColumn(name = "subject_id")},
-            inverseJoinColumns = {@JoinColumn(name = "teacher_id")}
-    )
-    private Set<TeacherEntity> teachers;
+//    @ManyToMany(cascade = {CascadeType.ALL})
+//    @JoinTable(
+//            name = "subject_teacher",
+//            joinColumns = {@JoinColumn(name = "subject_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "teacher_id")}
+//    )
+//    @JsonIgnore
+//    private Set<TeacherEntity> teachers;
 
 
     @OneToMany(mappedBy = "subject")

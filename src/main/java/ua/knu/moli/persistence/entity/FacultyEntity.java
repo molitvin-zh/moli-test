@@ -30,9 +30,6 @@ public class FacultyEntity {
     private String fullName;
 
     @NotNull
-    private Integer phone;
-
-    @NotNull
     private String mail;
 
     @JsonIgnore

@@ -18,7 +18,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "student")
+@Table(name = "teacher")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,29 +27,26 @@ import lombok.NoArgsConstructor;
 public class TeacherEntity {
     @Id
     @NotNull
-    private Integer ticketNumber;
-
-    @NotNull
-    private String name;
-
-    @NotNull
-    private String surname;
-
-    @NotNull
-    private Integer phone;
-
-    @NotNull
     private String mail;
+
+    @NotNull
+    private String fullName;
+
+    @NotNull
+    private String password;
+
 
     @ManyToOne
     @JoinColumn(name="faculty_id")
     private FacultyEntity faculty;
 
-    @OneToMany(mappedBy="teacher")
-    @JsonIgnore
-    private Set<TestEntity> tests;
+//    @OneToMany(mappedBy="teacher")
+//    @JsonIgnore
+//    private Set<TestEntity> tests;
 
-    @ManyToMany(mappedBy = "teachers")
-    @JsonIgnore
-    private Set<SubjectEntity> employees;
+    @NotNull
+    private String subjects;
+
+//    @ManyToMany(mappedBy = "teachers")
+//    private Set<SubjectEntity> subjects;
 }
